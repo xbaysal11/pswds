@@ -3,8 +3,8 @@ package com.baisalbek.pswds.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="person")
-public class Person {
+@Table(name="user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

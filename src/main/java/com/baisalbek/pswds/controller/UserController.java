@@ -1,12 +1,13 @@
 package com.baisalbek.pswds.controller;
 
-import com.baisalbek.pswds.entities.Person;
+import com.baisalbek.pswds.entities.User;
 import com.baisalbek.pswds.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("person")
+@RequestMapping("user")
 public class UserController {
     @Autowired
     UserService userService;
@@ -14,9 +15,9 @@ public class UserController {
     @GetMapping(
             produces = "application/json"
     )
-    public Person getUser(@RequestParam(name="email", required = false) String email){
+    public User getUser(@RequestParam(name="email", required = false) String email){
 
-        Person personHere = userService.getUser(email);
+        User personHere = userService.getUser(email);
         return personHere;
     }
 
@@ -24,9 +25,14 @@ public class UserController {
             consumes = "application/json",
             produces = "application/json"
     )
-    public Person createUser(@RequestBody Person person){
+    public User createUser(@RequestBody User user){
 
-        userService.createUser(person);
-        return person;
+        userService.createUser(user);
+        return user;
+    }
+    @DeleteMapping
+    public HttpStatus deleteUser(@RequestParam(name = "email", required = false) String email){
+        userService.deleteUser(email);
+        return HttpStatus.OK;
     }
 }

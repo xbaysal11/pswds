@@ -1,8 +1,9 @@
 package com.baisalbek.pswds.service;
 
-import com.baisalbek.pswds.entities.Person;
+import com.baisalbek.pswds.entities.User;
 
 public interface UserService {
-    public Person createUser(Person person);
-    public Person getUser(String email);
+    public User createUser(User person);
+    public User getUser(String email);
+    public String deleteUser(String email);
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PSWDS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap -->
+    <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+
+</head>
+<body style="padding-top:50px;">
+ <!-- Nav Bar -->
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">PSWDS - Password Saver</a>
+      </div>
+    </div>
+  </div>
+
+<!-- Body -->
+  <div class="container">
+    <h1> Keep your passwords in a safe!</h1>
+
+    <hr/>
+
+  <div class = "list">
+    <form class="form-horizontal" role="form" th:action="@{/update}" th:object="${items}" method="POST">
+      <table class="table table-bordered table-striped" id="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item,i : *{list}" >
+                <input type="hidden" th:field="*{list[__${i.index}__].id}"/>
+                <td contenteditable="true" th:text="${item.title}">Item_title</td><input type="hidden" th:field="*{list[__${i.index}__].title}"/>
+                <td th:text="${item.userName}">Item_user_name</td><input type="hidden" th:field="*{list[__${i.index}__].userName}"/>
+                <td th:text="${item.password}" type="password" >Item_password</td><input type="hidden" th:field="*{list[__${i.index}__].password}"/>
+                <td><a th:href="${item.link}" th:text="${item.link}"  target="_blank">Item_link</a></td><input type="hidden" th:field="*{list[__${i.index}__].link}"/>
+            </tr>
+        </tbody>
+      </table>
+       <!-- Update Button -->
+<!--          <button type="submit" class="btn btn-primary">Update!</button>-->
+        </form>
+    </div>
+
+    <hr/>
+
+    <!-- Item Input Form -->
+    <div class="form">
+      <form class="form-horizontal" role="form" th:action="@{/add}" th:object="${newitem}" method="POST">
+        <div class="form-group">
+          <label for="inputItemTitle" class="col-sm-2">Title</label>
+          <div class="col-sm-10">
+            <input type="text" th:field="*{title}" class="form-control" id="inputItemTitle" placeholder="Enter title"/>
+          </div>
+        </div>
+          <div class="form-group">
+              <label for="inputItemUserName" class="col-sm-2">UserName</label>
+              <div class="col-sm-10">
+                  <input type="text" th:field="*{userName}" class="form-control" id="inputItemUserName" placeholder="Enter user name"/>
+              </div>
+          </div>
+
+        <div class="form-group">
+          <label for="inputItemPassword" class="col-sm-2">Password</label>
+          <div class="col-sm-10">
+            <input type="text" th:field="*{password}" class="form-control" id="inputItemPassword" placeholder="Enter password"/>
+          </div>
+        </div>
+          <div class="form-group">
+              <label for="inputItemLink" class="col-sm-2">Link</label>
+              <div class="col-sm-10">
+                  <input type="text" th:field="*{link}" class="form-control" id="inputItemLink" placeholder="Enter link"/>
+              </div>
+          </div>
+        <button type="submit" class="btn btn-primary">Add Entry</button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.min.js"></script>
+
+</body>
+</html>
