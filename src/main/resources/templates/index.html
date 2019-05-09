@@ -5,24 +5,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="shortcut icon" type="image/png" href="http://universidadedegestao.com.br/wp-content/uploads/lock-open-blue.png"/>
     <!-- Bootstrap -->
-    <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body style="padding-top:50px;">
+<body style="margin-bottom: 10em  ;">
  <!-- Nav Bar -->
 
-  <div class="navbar navbar-fixed-top" role="navigation" style="background: #428BCA;">
+  <div class="navbar navbar-fixed-top" role="navigation" style="background: #007bff;">
     <div class="container">
       <div class="navbar-header" style="display: flex; justify-content: space-between; width: 100%;">
           <div style="display: flex; align-items: center;width: 100%; ">
               <img src="http://cdn.onlinewebfonts.com/svg/img_521094.png" style="width: 2.5em; height: 2.7em; margin: 0 1em;">
               <a class="navbar-brand"  style="color: #FFF;">PSWDS - Password Saver</a>
           </div>
-          <div  style="display: flex; align-items: center;width: 20%; justify-items: right;">
-              <a class="navbar-brand" style="color: #FFF;" ><p th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</p></a>
-              <a><img src="https://cdn2.iconfinder.com/data/icons/picons-essentials/57/logout-512.png" style="width: 2.5em; height: 2.7em; margin: 0 1em;"><form th:action="@{/logout}" method="post">
-                  <input type="submit" value="Sign Out"/>
-              </form></a>
+          <div  style="display: flex; align-items: center;width: 20%; align-items: center; justify-items: right;">
+              <p class="navbar-brand" style="margin: 0 1em !important; color: #fff;" th:inline="text">[[${#httpServletRequest.remoteUser}]]</p>
+              <form th:action="@{/logout}" method="post">
+                  <input type="submit" class="btn btn-outline-danger" value="Log Out"/>
+              </form>
           </div>
       </div>
     </div>
@@ -30,7 +29,7 @@
 
 <!-- Body -->
   <div class="container">
-    <h1> Keep your passwords in a safe!</h1>
+    <h1 style="margin: 0.5em 0;text-align: center;"> Keep your passwords in a safe!</h1>
 
     <hr/>
 
@@ -38,7 +37,7 @@
     <form class="form-horizontal" role="form" th:action="@{/update}" th:object="${items}" method="POST">
       <table class="table table-bordered table-striped" id="table">
         <thead>
-          <tr>
+          <tr style="text-align: center;">
             <th>Title</th>
             <th>UserName</th>
             <th>Password</th>
@@ -46,12 +45,12 @@
           </tr>
         </thead>
         <tbody>
-            <tr th:each="item,i : *{list}" >
+            <tr th:each="item,i : *{list}"  >
                 <input type="hidden" th:field="*{list[__${i.index}__].id}"/>
-                <td contenteditable="true" th:text="${item.title}">Item_title</td><input type="hidden" th:field="*{list[__${i.index}__].title}"/>
-                <td th:text="${item.userName}">Item_user_name</td><input type="hidden" th:field="*{list[__${i.index}__].userName}"/>
-                <td th:text="${item.password}" >Item_password</td><input type="hidden" th:field="*{list[__${i.index}__].password}"/>
-                <td><a th:href="${item.link}" th:text="${item.link}"  target="_blank">Item_link</a></td><input type="hidden" th:field="*{list[__${i.index}__].link}"/>
+                <td style="padding: 0.5em 2em;" contenteditable="true" th:text="${item.title}">Item_title</td><input type="hidden" th:field="*{list[__${i.index}__].title}"/>
+                <td style="padding: 0.5em 2em;" th:text="${item.userName}">Item_user_name</td><input type="hidden" th:field="*{list[__${i.index}__].userName}"/>
+                <td style="padding: 0.5em 2em;" th:text="${item.password}" >Item_password</td><input type="hidden" th:field="*{list[__${i.index}__].password}"/>
+                <td style="padding: 0.5em 2em;"><a th:href="${item.link}" th:text="${item.link}"  target="_blank">Item_link</a></td><input type="hidden" th:field="*{list[__${i.index}__].link}"/>
             </tr>
         </tbody>
       </table>
@@ -65,32 +64,32 @@
     <!-- Item Input Form -->
     <div class="form">
       <form class="form-horizontal" role="form" th:action="@{/add}" th:object="${newitem}" method="POST">
-        <div class="form-group">
+        <div class="form-group d-flex text-right" >
           <label for="inputItemTitle" class="col-sm-2">Title</label>
-          <div class="col-sm-10">
+          <div class="col-sm-8">
             <input type="text" th:field="*{title}" class="form-control" id="inputItemTitle" placeholder="Enter title"/>
           </div>
         </div>
-          <div class="form-group">
+          <div class="form-group d-flex text-right">
               <label for="inputItemUserName" class="col-sm-2">UserName</label>
-              <div class="col-sm-10">
+              <div class="col-sm-8">
                   <input type="text" th:field="*{userName}" class="form-control" id="inputItemUserName" placeholder="Enter user name"/>
               </div>
           </div>
 
-        <div class="form-group">
+        <div class="form-group d-flex text-right">
           <label for="inputItemPassword" class="col-sm-2">Password</label>
-          <div class="col-sm-10">
+          <div class="col-sm-8">
             <input type="text" th:field="*{password}" class="form-control" id="inputItemPassword" placeholder="Enter password"/>
           </div>
         </div>
-          <div class="form-group">
+          <div class="form-group d-flex text-right">
               <label for="inputItemLink" class="col-sm-2">Link</label>
-              <div class="col-sm-10">
+              <div class="col-sm-8">
                   <input type="text" th:field="*{link}" class="form-control" id="inputItemLink" placeholder="Enter link"/>
               </div>
           </div>
-        <button type="submit" class="btn btn-primary" >Add Entry</button>
+        <button type="submit" class="btn btn-outline-primary float-right" style="margin-right: 15em ;" >Add Entry</button>
 
       </form>
     </div>

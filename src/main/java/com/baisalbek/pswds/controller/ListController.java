@@ -38,16 +38,16 @@ public class ListController {
     public String addItem(@ModelAttribute Item requestItem) {
         Item item = new Item(requestItem.getTitle(), requestItem.getUserName(),requestItem.getPassword(),requestItem.getLink());
         repository.save(item);
-        return "redirect:/";
+        return "redirect:/index";
     }
 
-    @RequestMapping("/update")
-    public String updateItem(@ModelAttribute ListViewModel requestItems) {
-        for (Item requestItem : requestItems.getList() ) {
-            Item item = new Item(requestItem.getTitle(), requestItem.getUserName(),requestItem.getPassword(),requestItem.getLink());
-            item.setId(requestItem.getId());
-            repository.save(item);
-        }
-        return "redirect:/";
-    }
+//    @RequestMapping("/update")
+//    public String updateItem(@ModelAttribute ListViewModel requestItems) {
+//        for (Item requestItem : requestItems.getList() ) {
+//            Item item = new Item(requestItem.getTitle(), requestItem.getUserName(),requestItem.getPassword(),requestItem.getLink());
+//            item.setId(requestItem.getId());
+//            repository.save(item);
+//        }
+//        return "redirect:/";
+//    }
 }
