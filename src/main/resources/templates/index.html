@@ -19,8 +19,10 @@
               <a class="navbar-brand"  style="color: #FFF;">PSWDS - Password Saver</a>
           </div>
           <div  style="display: flex; align-items: center;width: 20%; justify-items: right;">
-              <a class="navbar-brand" style="color: #FFF;">xbaysal11</a>
-              <a><img src="https://cdn2.iconfinder.com/data/icons/picons-essentials/57/logout-512.png" style="width: 2.5em; height: 2.7em; margin: 0 1em;"></a>
+              <a class="navbar-brand" style="color: #FFF;" ><p th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</p></a>
+              <a><img src="https://cdn2.iconfinder.com/data/icons/picons-essentials/57/logout-512.png" style="width: 2.5em; height: 2.7em; margin: 0 1em;"><form th:action="@{/logout}" method="post">
+                  <input type="submit" value="Sign Out"/>
+              </form></a>
           </div>
       </div>
     </div>

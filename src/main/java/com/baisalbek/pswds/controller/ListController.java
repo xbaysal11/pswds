@@ -18,6 +18,14 @@ public class ListController {
     private ItemRepository repository;
 
     @RequestMapping("/")
+    public String home(Model model) {
+//        ArrayList<Item> list = (ArrayList<Item>) repository.findAll();
+//        //model.addAttribute("items", todoList);
+//        model.addAttribute("newitem", new Item());
+//        model.addAttribute("items", new ListViewModel(list));
+        return "home";
+    }
+    @RequestMapping("/index")
     public String index(Model model) {
         ArrayList<Item> list = (ArrayList<Item>) repository.findAll();
         //model.addAttribute("items", todoList);
