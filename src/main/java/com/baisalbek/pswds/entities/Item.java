@@ -1,37 +1,42 @@
 package com.baisalbek.pswds.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-public class Item {
+@Table(name = "item")
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "userName")
     private String userName;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "link")
     private String link;
 
+    @Column(name = "createDate")
+    private Date createDate;
 
-    public Item() {}
+    @Column(name = "updateDate")
+    private Date updateDate;
 
-    public Item(String title, String userName, String password, String link) {
-        this.title = title;
-        this.userName = userName;
-        this.password = password;
-        this.link = link;
-
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Item[id=%d, title='%s', userName='%s',  password='%s',  link='%s']",
-                id, title,  userName, password, link) ;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -40,7 +45,6 @@ public class Item {
 
     public void setTitle(String title) {
         this.title = title;
-        return;
     }
 
     public String getUserName() {
@@ -49,33 +53,37 @@ public class Item {
 
     public void setUserName(String userName) {
         this.userName = userName;
-        return;
     }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-        return;
     }
+
     public String getLink() {
         return link;
     }
 
     public void setLink(String link) {
         this.link = link;
-        return;
     }
 
-    public Long getId() {
-        return id;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-        return;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
+    public Date getUpdateDate() {
+        return updateDate;
+    }
 
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 }
