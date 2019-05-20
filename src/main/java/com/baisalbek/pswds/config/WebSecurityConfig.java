@@ -33,8 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         UserDetails user =
                 User.withDefaultPasswordEncoder()
-                        .username("1")
-                        .password("1")
+                        .username("admin")
+                        .password("admin")
                         .roles("USER")
                         .build();
 
