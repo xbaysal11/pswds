@@ -21,15 +21,15 @@ REQUIREMENTS
 JDK 1.8+, <br/>
 Gradle 5.2+,<br/>
 Mysql 5.7+,<br/>
-Bootstrap 3.3+, Jquery 2.1+ and DateTable for Bootstrap 4
 if you use JDK8 this dependency required
 
 INSTALLATION
 ------------
- 1. Clone project and import as maven project.
+ 1. Clone project and import as gradle project.
  2. Update MYSQL usernane and password under the <strong>application.properties</strong> 
- `spring.datasource.username=` and 
- `spring.datasource.password=`
+    1. `spring.datasource.url=jdbc:mysql://localhost:3306/NAME-OF-YOUR-DATABASE`
+    2. `spring.datasource.username=USERNAME-FOR-YOUR-DATABASE`
+    3. `spring.datasource.password=PASSWORD-FOR-YOUR-DATABASE`
  
  Run Application
 ------------
